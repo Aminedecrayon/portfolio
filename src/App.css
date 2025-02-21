@@ -37,9 +37,10 @@ body::after {
 }
 
 /* Images aléatoires */
+/* Images aléatoires */
 .background-image {
   opacity: 0.8; /* Légère transparence pour ne pas gêner le texte */
-  animation: moveImage 60s ease-in-out infinite; /* Animation lente */
+  animation: moveImage 20s ease-in-out infinite; /* Animation plus rapide */
   position: absolute;
   transition: transform 0.5s ease-in-out;
 }
@@ -50,7 +51,7 @@ body::after {
     transform: translate(0, 0) rotate(0deg) scale(1);
   }
   50% {
-    transform: translate(10%, -10%) rotate(15deg) scale(1.1);
+    transform: translate(20%, -20%) rotate(30deg) scale(1.2); /* Plus grand déplacement et rotation */
   }
   100% {
     transform: translate(0, 0) rotate(0deg) scale(1);
@@ -147,4 +148,34 @@ body::after {
     transform: scale(0) translate(-50%, -50%);
     opacity: 0;
   }
+}
+
+/* Lien de retour aux projets */
+.back-to-projects {
+  color: #f48fb1; /* Couleur rose, similaire à celle des boutons */
+  text-decoration: none; /* Enlever le soulignement par défaut */
+  position: relative; /* Nécessaire pour le pseudo-élément */
+  font-weight: bold; /* Optionnel, mais donne un effet plus accentué */
+  transition: color 0.3s ease;
+}
+
+/* Soulignement progressif */
+.back-to-projects::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #f48fb1; /* Couleur du soulignement */
+  transition: width 0.3s ease; /* Animation progressive */
+}
+
+/* Au survol */
+.back-to-projects:hover {
+  color: #f06292; /* Couleur rose un peu plus foncée au survol (optionnel) */
+}
+
+.back-to-projects:hover::after {
+  width: 100%; /* Le soulignement s'étend jusqu'à la largeur du texte */
 }

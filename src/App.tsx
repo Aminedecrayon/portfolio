@@ -13,6 +13,7 @@ import Projet from "./Componants/Projet";
 import Contact from "./Componants/Contact";
 import MouseFollower from "./Componants/MouseFollower";
 import MouseTrail from "./Componants/MouseTrail";
+import ProjetDetail from "./Componants/ProjetDetail";
 import "./App.css";
 import Image1 from "./images/rb_24058.png";
 import Image2 from "./images/9da325d1-192c-4b3b-b3b8-dcfb1b5ed35a-removebg-preview.png";
@@ -60,7 +61,7 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <Router>
+    <Router basename="/portfolio">
       <div className="relative w-full h-screen">
         <div id="background-container"></div>
         <ShowHomeButton />
@@ -80,6 +81,7 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/moi" element={<Moi />} />
+            <Route path="/projet/:id" element={<ProjetDetail />} />
             <Route path="/projet" element={<Projet />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
@@ -92,10 +94,11 @@ const App: React.FC = () => {
 const ShowHomeButton = () => {
   const location = useLocation();
   if (location.pathname === "/") return null;
+
   return (
     <Link
       to="/"
-      className="absolute top-4 left-4 p-3 bg-gray-200 rounded-full hover:bg-gray-300 transition shadow-lg"
+      className="absolute top-4 left-4 p-3 bg-gray-200 rounded-full hover:bg-gray-300 transition shadow-lg z-50"
     >
       <HomeIcon className="w-6 h-6 text-gray-700" />
     </Link>
@@ -109,12 +112,13 @@ const HamburgerMenu = () => {
     <div className="absolute top-4 right-4 z-50">
       <button
         onClick={() => setOpen(!open)}
-        className="p-3 bg-gray-200 rounded-full hover:bg-gray-300 transition shadow-lg"
+        className="p-3 bg-[#F48FB1] rounded-full hover:bg-[#F06292] transition shadow-lg"
       >
-        <Menu className="w-6 h-6 text-gray-700" />
+        <Menu className="w-6 h-6 text-white" />{" "}
+        {/* Je change la couleur de l'icône en blanc */}
       </button>
       {open && (
-        <div className="absolute right-0 mt-2 w-40 bg-white shadow-lg rounded-lg flex flex-col">
+        <div className="absolute right-0 mt-2 w-40 bg-[#F48FB1] shadow-lg rounded-lg flex flex-col">
           <Link
             to="/moi"
             className="p-2 hover:bg-gray-100"
@@ -127,7 +131,7 @@ const HamburgerMenu = () => {
             className="p-2 hover:bg-gray-100"
             onClick={() => setOpen(false)}
           >
-            Projet
+            Projets
           </Link>
           <Link
             to="/contact"
